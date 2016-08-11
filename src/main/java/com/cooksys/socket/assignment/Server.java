@@ -21,7 +21,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-public class Server extends Utils
+public class Server implements Runnable
 {
 
 	/**
@@ -42,11 +42,15 @@ public class Server extends Utils
 		return info;
 	}
 
-	public static void main(String[] args)
-	{
 
+
+	@Override
+	public void run()
+	{
 		try
 		{
+			Server server = new Server();
+			Thread serverThread = new Thread(server);
 			JAXBContext context = Utils.createJAXBContext();
 			Config config = Utils.loadConfig("config/config.xml", context);
 			Student stud = loadStudent(config.getStudentFilePath(), context);
@@ -61,6 +65,7 @@ public class Server extends Utils
 				Marshaller marshaller = context.createMarshaller();// convert to
 																	// xml
 				marshaller.marshal(stud, out);
+				serverThread.start();
 
 			} catch (IOException e)
 			{
@@ -73,6 +78,5 @@ public class Server extends Utils
 			e.printStackTrace();
 
 		}
-
 	}
 }

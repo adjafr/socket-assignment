@@ -18,11 +18,15 @@ import javax.xml.bind.Unmarshaller;
 
 import com.cooksys.socket.assignment.model.Config;
 
-public class Client
+public class Client implements Runnable
 {
 
-	public static void main(String[] args)
+
+
+	@Override
+	public void run()
 	{
+
 
 		try
 		{
@@ -47,5 +51,6 @@ public class Client
 		{
 			e.printStackTrace();
 		}
+		
 	}
 }
