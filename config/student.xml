@@ -1,1 +1,5 @@
-<student/>
+<student firstName = "Adam" lastName = "Fraser">
+<favorite-ide>Cool Text</favorite-ide>
+<favorite-language>Java</favorite-language>
+<favorite-paradigm>Object Oriented</favorite-paradigm>
+</student>
